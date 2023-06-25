@@ -186,8 +186,8 @@ $(filter-out _all sub-make $(lastword $(MAKEFILE_LIST)), $(MAKECMDGOALS)) _all: 
 	@:
 
 # Invoke a second make in the output directory, passing relevant variables
-sub-make:
-	$(Q)$(MAKE) -C $(abs_objtree) -f $(abs_srctree)/Makefile $(MAKECMDGOALS)
+sub-make: .PHONY .INTERMEDIATE
+	$(Q)$(MAKE) $(MAKEFLAGS) -C $(abs_objtree) -f $(abs_srctree)/Makefile $(MAKECMDGOALS)
 
 endif # need-sub-make
 endif # sub_make_done
